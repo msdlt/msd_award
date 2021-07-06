@@ -1,0 +1,33 @@
+{
+  "name": "msd_award",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ui-build --bundle --watch -p 3000",
+    "build": "ui-build --bundle",
+    "lint": "ui-test --lint",
+    "lint:fix": "ui-test --lint --fix",
+    "clean": "ui-build --clean",
+    "open:sandbox": "ui-scripts open-sandbox"
+  },
+  "dependencies": {
+    "@instructure/canvas-theme": "8.6.0",
+    "@instructure/emotion": "8.6.0",
+    "@instructure/ui-heading": "8.6.0",
+    "@instructure/ui-icons": "8.6.0",
+    "@instructure/ui-svg-images": "8.6.0",
+    "@instructure/ui-text": "8.6.0",
+    "@instructure/ui-themes": "8.6.0",
+    "@instructure/ui-view": "8.6.0",
+    "@oxctl/ui-lti": "^1.1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@instructure/ui-babel-preset": "8.6.0",
+    "@instructure/ui-eslint-config": "8.6.0",
+    "@instructure/ui-scripts": "8.6.0",
+    "@instructure/ui-stylelint-config": "8.6.0",
+    "@instructure/ui-webpack-config": "8.6.0",
+    "html-webpack-plugin": "^4"
+  }
+}

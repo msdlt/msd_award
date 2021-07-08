@@ -12,13 +12,17 @@
   "dependencies": {
     "@instructure/canvas-theme": "8.6.0",
     "@instructure/emotion": "8.6.0",
+    "@instructure/ui-billboard": "^8.6.0",
     "@instructure/ui-heading": "8.6.0",
     "@instructure/ui-icons": "8.6.0",
+    "@instructure/ui-modal": "^8.6.0",
+    "@instructure/ui-spinner": "^8.6.0",
     "@instructure/ui-svg-images": "8.6.0",
     "@instructure/ui-text": "8.6.0",
     "@instructure/ui-themes": "8.6.0",
     "@instructure/ui-view": "8.6.0",
     "@oxctl/ui-lti": "^1.1.0",
+    "jwt-decode": "^3.1.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },

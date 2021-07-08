@@ -23,10 +23,81 @@
  */
 
 import React from 'react'
-import Banner from './Banner'
+
+import { theme } from '@instructure/canvas-theme'
+import { LtiTokenRetriever } from '@oxctl/ui-lti'
+import { Spinner } from '@instructure/ui-spinner'
+import { ErrorBillBoard } from '@oxctl/ui-lti'
+import { LtiApplyTheme } from '@oxctl/ui-lti'
+import jwtDecode from 'jwt-decode'
+import { LtiHeightLimit } from '@oxctl/ui-lti'
 
 import '@instructure/canvas-theme'
 
-const App = () => <Banner />
+const settings = {
+  'https://localhost:3000': {
+    'ltiServer': process.env.REACT_APP_LTI_URL,
+    'proxyServer': process.env.REACT_APP_PROXY_URL
+  },
+  'https://oxctl-canvas-calendar-sync-dev.s3-eu-west-1.amazonaws.com': {
+    'ltiServer': 'https://lti-dev.canvas.ox.ac.uk',
+    'proxyServer': 'https://proxy-dev.canvas.ox.ac.uk'
+  },
+  'https://oxctl-canvas-calendar-sync-prod.s3-eu-west-1.amazonaws.com': {
+    'ltiServer': 'https://lti.canvas.ox.ac.uk',
+    'proxyServer': 'https://proxy.canvas.ox.ac.uk'
+  }
+}
+
+
+
+// Needed to prevent optimising away of theme.
+//theme.use()
+
+class App extends React.Component {
+  state = {
+    jwt: null,
+    needsToken: false,
+    error: null,
+    comInstructureBrandConfigJsonUrl: null,
+    canvasApiBaseUrl: null
+  }
+
+  constructor(props, context) {
+    super(props, context)
+    const origin = window.origin
+    const server = settings[origin]
+    if (server) {
+      this.proxyUrl = server.proxyServer
+      this.ltiUrl = server.ltiServer
+    } else {
+      this.state['error'] = 'Failed to find settings for origin: ' + origin
+    }
+  }
+
+  updateToken(token) {
+    this.jwt = jwtDecode(token)
+    this.setState({
+      jwt: token,
+      comInstructureBrandConfigJsonUrl: this.jwt['https://purl.imsglobal.org/spec/lti/claim/custom'].com_instructure_brand_config_json_url,
+      canvasApiBaseUrl: this.jwt['https://purl.imsglobal.org/spec/lti/claim/custom'].canvas_api_base_url
+    })
+  }
+
+  render() {
+    return (
+      <ErrorBillBoard message={this.state.error}>
+        <LtiTokenRetriever ltiServer={this.ltiUrl} handleJwt={(jwt) => this.updateToken(jwt)}>
+          <LtiApplyTheme url={this.state.comInstructureBrandConfigJsonUrl}>
+            <LtiHeightLimit>
+                <Spinner renderTitle="Loading JWT" size={'medium'}/>
+                Hello
+            </LtiHeightLimit>
+          </LtiApplyTheme>
+        </LtiTokenRetriever>
+      </ErrorBillBoard>
+    )
+  }
+}
 
 export default App

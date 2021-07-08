@@ -25,11 +25,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { canvas } from '@instructure/ui-themes'
-import { EmotionThemeProvider } from '@instructure/emotion'
 
-ReactDOM.render(
-  <EmotionThemeProvider theme={canvas}>
-    <App />
-  </EmotionThemeProvider>,
-  document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

@@ -36,8 +36,10 @@ import '@instructure/canvas-theme'
 
 const settings = {
   'https://localhost:3000': {
-    'ltiServer': process.env.REACT_APP_LTI_URL,
-    'proxyServer': process.env.REACT_APP_PROXY_URL
+    //'ltiServer': process.env.REACT_APP_LTI_URL,
+    //'proxyServer': process.env.REACT_APP_PROXY_URL
+    'ltiServer': 'https://lti-dev.canvas.ox.ac.uk',
+    'proxyServer': 'https://proxy-dev.canvas.ox.ac.uk'
   },
   'https://oxctl-canvas-calendar-sync-dev.s3-eu-west-1.amazonaws.com': {
     'ltiServer': 'https://lti-dev.canvas.ox.ac.uk',
@@ -91,7 +93,7 @@ class App extends React.Component {
           <LtiApplyTheme url={this.state.comInstructureBrandConfigJsonUrl}>
             <LtiHeightLimit>
                 <Spinner renderTitle="Loading JWT" size={'medium'}/>
-                Hello Im me
+                Hello Im me too
             </LtiHeightLimit>
           </LtiApplyTheme>
         </LtiTokenRetriever>

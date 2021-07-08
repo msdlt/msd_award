@@ -91,7 +91,7 @@ class App extends React.Component {
           <LtiApplyTheme url={this.state.comInstructureBrandConfigJsonUrl}>
             <LtiHeightLimit>
                 <Spinner renderTitle="Loading JWT" size={'medium'}/>
-                Hello
+                Hello Im me
             </LtiHeightLimit>
           </LtiApplyTheme>
         </LtiTokenRetriever>

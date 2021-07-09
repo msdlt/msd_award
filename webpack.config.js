@@ -37,6 +37,7 @@ module.exports = {
   },
   devServer: {
     contentBase: outputPath,
+    https: true,
     host: '0.0.0.0'
   },
   plugins: [
